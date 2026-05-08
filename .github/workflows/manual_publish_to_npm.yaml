@@ -58,4 +58,6 @@ jobs:
                       npx sentry-cli sourcemaps inject ./dist
                       npx sentry-cli sourcemaps upload --release "$(jq -r '.version' package.json)" ./dist
             -   name: Publish to NPM
-                run: npm publish --tag ${{ inputs.tag }}
+                env:
+                    NPM_TAG: ${{ inputs.tag }}
+                run: npm publish --tag $NPM_TAG
